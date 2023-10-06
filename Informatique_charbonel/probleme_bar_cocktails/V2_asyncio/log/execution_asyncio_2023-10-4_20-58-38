@@ -1,0 +1,22 @@
+2023-10-04 20:58:38,753 - DEBUG - Using selector: EpollSelector
+2023-10-04 20:58:46,885 - INFO - [Serveur] fonction prendre_commande utilisée au temps 8.13200330734253
+2023-10-04 20:58:47,887 - INFO - [Pic] fonction ajouter utilisée au temps 9.134307861328125
+2023-10-04 20:58:47,888 - INFO - [Serveur] fonction prendre_commande utilisée au temps 9.13490915298462
+2023-10-04 20:58:47,888 - INFO - [Pic] fonction retirer utilisée au temps 9.135378122329712
+2023-10-04 20:58:48,890 - INFO - [Pic] fonction ajouter utilisée au temps 10.13680624961853
+2023-10-04 20:58:48,890 - INFO - [Serveur] fonction prendre_commande utilisée au temps 10.137341737747192
+2023-10-04 20:58:48,891 - INFO - [Barman] fonction prepare utilisée au temps 10.13784122467041
+2023-10-04 20:58:48,891 - INFO - [Bar] fonction ajouter utilisée au temps 10.138194799423218
+2023-10-04 20:58:48,891 - INFO - [Pic] fonction retirer utilisée au temps 10.138476610183716
+2023-10-04 20:58:49,891 - INFO - [Pic] fonction ajouter utilisée au temps 11.138358354568481
+2023-10-04 20:58:49,892 - INFO - [Barman] fonction prepare utilisée au temps 11.139212369918823
+2023-10-04 20:58:49,893 - INFO - [Bar] fonction ajouter utilisée au temps 11.139577865600586
+2023-10-04 20:58:49,893 - INFO - [Pic] fonction retirer utilisée au temps 11.139930486679077
+2023-10-04 20:58:50,889 - INFO - [Bar] fonction retirer utilisée au temps 12.13583254814148
+2023-10-04 20:58:50,889 - INFO - [Serveur] fonction servir utilisée au temps 12.136321067810059
+2023-10-04 20:58:50,894 - INFO - [Barman] fonction prepare utilisée au temps 12.141273498535156
+2023-10-04 20:58:50,895 - INFO - [Bar] fonction ajouter utilisée au temps 12.141868114471436
+2023-10-04 20:58:51,892 - INFO - [Bar] fonction retirer utilisée au temps 13.13922381401062
+2023-10-04 20:58:51,893 - INFO - [Serveur] fonction servir utilisée au temps 13.139948606491089
+2023-10-04 20:58:52,895 - INFO - [Bar] fonction retirer utilisée au temps 14.142331600189209
+2023-10-04 20:58:52,896 - INFO - [Serveur] fonction servir utilisée au temps 14.143081665039062

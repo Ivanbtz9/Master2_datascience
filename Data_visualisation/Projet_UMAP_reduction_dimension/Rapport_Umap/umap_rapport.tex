@@ -1,0 +1,132 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{ragged2e}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{MnSymbol,wasysym}
+\usepackage{natbib}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exer}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+\newcommand{\C}{\mathbb{C}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+		\definecolor{myred}{rgb}{1,0.215686,0}
+		\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+		..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+		..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+		..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+		..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+		--cycle;
+		\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+		..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+		..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+		..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+		..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+		--cycle;
+		\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+		..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+		..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+		..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+		--cycle;
+		\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+		..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+		..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+		..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+		--cycle;
+\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+\newcommand{\disp}{\displaystyle}\newcommand{\Pro}{\mathbb{P}}
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+\definecolor{qqqqff}{rgb}{0,0,1}
+\definecolor{cqcqcq}{rgb}{0.75,0.75,0.75}
+
+\lstset{
+	language=Python,
+	basicstyle=\ttfamily,
+	keywordstyle=\color{blue},
+	stringstyle=\color{green},
+	commentstyle=\color{gray},
+	numbers=left,
+	numberstyle=\tiny,
+	breaklines=true,
+	showstringspaces=false,
+	frame=single
+}
+
+
+
+\pagestyle{fancy}
+\lhead{}\chead{}\rhead{Projet data-visualisation}\lfoot{Youness Chaanani et Ivanhoé Botcazou}\cfoot{\thepage/n}\rfoot{Année~2023-2024 }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+	
+	
+	
+	\noindent\shadowbox{	\begin{minipage}{1\linewidth}\centering
+			\huge{\textbf{ Méthodes de réduction de dimension }}
+	\end{minipage}}
+	
+	\raggedright
+	\bigskip\hfill\\[3cm]
+	\tableofcontents
+
+	
+	\section{Introduction}
+	\justifying	
+	\newpage
+	\section{ACP}
+	\newpage
+	
+	\section{UMAP}
+\end{document}

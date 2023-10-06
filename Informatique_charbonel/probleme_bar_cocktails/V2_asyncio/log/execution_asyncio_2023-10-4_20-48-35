@@ -1,0 +1,22 @@
+2023-10-04 20:48:35,798 - DEBUG - Using selector: EpollSelector
+2023-10-04 20:48:42,614 - INFO - [Serveur] fonction prendre_commande utilisée au temps 6.816391944885254
+2023-10-04 20:48:42,614 - INFO - [Pic] fonction ajouter utilisée au temps 6.817141771316528
+2023-10-04 20:48:42,615 - INFO - [Serveur] fonction prendre_commande utilisée au temps 6.817612409591675
+2023-10-04 20:48:42,615 - INFO - [Pic] fonction retirer utilisée au temps 6.817907094955444
+2023-10-04 20:48:42,616 - INFO - [Pic] fonction ajouter utilisée au temps 6.8182432651519775
+2023-10-04 20:48:42,616 - INFO - [Serveur] fonction prendre_commande utilisée au temps 6.818490743637085
+2023-10-04 20:48:42,616 - INFO - [Barman] fonction prepare utilisée au temps 6.818715572357178
+2023-10-04 20:48:42,616 - INFO - [Bar] fonction ajouter utilisée au temps 6.818910121917725
+2023-10-04 20:48:42,616 - INFO - [Pic] fonction retirer utilisée au temps 6.819119691848755
+2023-10-04 20:48:42,617 - INFO - [Pic] fonction ajouter utilisée au temps 6.819429397583008
+2023-10-04 20:48:42,617 - INFO - [Bar] fonction retirer utilisée au temps 6.819663763046265
+2023-10-04 20:48:42,617 - INFO - [Serveur] fonction servir utilisée au temps 6.819950819015503
+2023-10-04 20:48:42,618 - INFO - [Barman] fonction prepare utilisée au temps 6.820279121398926
+2023-10-04 20:48:42,618 - INFO - [Bar] fonction ajouter utilisée au temps 6.820533990859985
+2023-10-04 20:48:42,618 - INFO - [Pic] fonction retirer utilisée au temps 6.8207643032073975
+2023-10-04 20:48:42,619 - INFO - [Bar] fonction retirer utilisée au temps 6.821252346038818
+2023-10-04 20:48:42,619 - INFO - [Serveur] fonction servir utilisée au temps 6.821636915206909
+2023-10-04 20:48:42,619 - INFO - [Barman] fonction prepare utilisée au temps 6.821953058242798
+2023-10-04 20:48:42,620 - INFO - [Bar] fonction ajouter utilisée au temps 6.822265625
+2023-10-04 20:48:42,620 - INFO - [Bar] fonction retirer utilisée au temps 6.822744369506836
+2023-10-04 20:48:42,620 - INFO - [Serveur] fonction servir utilisée au temps 6.823155164718628

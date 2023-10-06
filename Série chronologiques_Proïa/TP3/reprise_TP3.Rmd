@@ -1,0 +1,86 @@
+---
+title: "Reprise du TP 3 ARMA"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+
+
+---
+
+\usepackage{amsmath}
+
+# Question 1 : Saisir le principe de l’ARMA, programmer une fonction
+
+Nous posons deux oppérateurs pour $(\phi_1,\dots,\phi_p)\in\mathbb{R}^p$ et $(\theta_1,\dots,\theta_q)\mathbb{R}^q$. $B$ est l'oppérateur retard du cours. 
+$\Phi(B) = I - \phi_1B -\dots- \phi_pB^p $ et $\Theta(B) = I + \theta_1B +\dots+ \theta_pB^q $ 
+
+$(X_t)$ est un processus de type ARMA(p,q) si pour $m\in\mathbb{R}$ on a 
+
+$\forall x \in\mathbb{Z] \quad \Phi(B)(X_t - m) = \Theta(B)\varepsilon_t$
+
+AR : Auto regressive associé à la partie en $\Phi$
+
+MA : Mouving average associé à la partie en $\Theta$
+
+```{r}
+set.seed(0)
+
+Phi = c(0.5, 1, 0.7)
+Theta = c(0.6, 0.4, 0.3)
+
+simulerARMA = function(n,m,Phi,Theta,s2) {
+  E = rnorm(n,mean = 0, sd= sqrt(s2))
+  Y = E
+  p = length(Phi)
+  q = length(Theta)
+  ind = max(length(Phi)+1,length(Theta)+1)
+  for (i in ind:n){
+    AR = ifelse(p>0,t(Phi) %*% Y[(i-p):(i-1)],0)
+    MA = ifelse(q>0,t(Theta) %*% E[(i-q):(i-1)] ,0)
+  
+   X[i] = AR + MA + E[i]
+   return(Y + m) 
+  }
+  
+}
+
+A1 = simulerARMA(500,3,c(-0.8),c(),2)
+
+plot(A1,type='l',col='red')
+```
+
+```{r}
+
+
+A = simulerARMA(500, 3, c(-0.8), c(), 1) 
+
+plot(A,type='l',col='red')
+
+```
+
+```{r}
+
+simulerARMA <- function(n, m, Phi, Theta, s2){
+  E = rnorm(n,0,sqrt(s2))
+  x = rep(c(0),n)
+  p = length(Phi)
+  q= length(Theta)
+  r = max(p,q)
+  Y = rep(0,n)
+  Y[1:r]=E[1:r]
+  for (i in ((r+1):n)){
+    ar = ifelse(p>0,t(Phi) %*% Y[(i-p):(i-1)],0)
+    ma = ifelse(q>0,t(Theta) %*% E[(i-q):(i-1)],0)
+    Y[i]= ma + ar + E[i]
+  }
+  X = Y+m
+  plot(X,type='l',col='red')
+}
+
+
+simulerARMA(400, 5, c(0.8), c(), 1,t='dhd') #on voit que le bruit n'est pas un bruit blanc 
+simulerARMA(400, 5, c(-0.8), c(), 1)
+
+```
+
