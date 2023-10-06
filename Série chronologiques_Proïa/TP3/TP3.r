@@ -14,7 +14,7 @@ m=2
 
 simulerARMA <- function(n, m, Phi, Theta, s2){
   E = rnorm(n,0,sqrt(s2))
-  x = rep(c(0),n)
+  #x = rep(c(0),n)
   p = length(Phi)
   q= length(Theta)
   r = max(p,q)
@@ -24,10 +24,9 @@ simulerARMA <- function(n, m, Phi, Theta, s2){
     ar = ifelse(p>0,t(Phi) %*% Y[(i-p):(i-1)],0)
     ma = ifelse(q>0,t(Theta) %*% E[(i-q):(i-1)],0)
     Y[i]= ma + ar + E[i]
+  }
   X = Y+m
   plot(X,type='l',col='red')
-  
-  }
 }
 
 
