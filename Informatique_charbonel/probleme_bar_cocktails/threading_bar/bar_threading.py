@@ -2,8 +2,10 @@
 
 import os, sys, time
 import logging
-import asyncio
 import datetime
+import threading
+import asyncio
+import numpy.random as npr
 
 
 #Données temporelles
@@ -62,7 +64,7 @@ class Accessoire(Verb):
             logging.info(f'[{self.__class__.__name__}] fonction retirer utilisée au temps {time.time()-t0}')
             return self.liste_attente.pop()
         else:
-            pass
+            return None
 
 
 class Pic(Accessoire):
@@ -88,6 +90,7 @@ class Bar(Accessoire):
         super().__init__()
         #Le bar stock les infos temps du barman
         self.tp = temps_preparation
+        self.encaisser = []
 
     def recevoir(self,plateau):
         super().ajouter(plateau)
@@ -95,8 +98,9 @@ class Bar(Accessoire):
     def evacuer(self):
         return super().retirer()
 
-class Serveur(Verb):
+class Serveur(Verb,threading.Thread):
     def __init__(self,pic,bar,commandes):
+        threading.Thread.__init__(self)
         print(f"[{self.__class__.__name__}] prêt pour le service")
         #faire un test pour vérifier que les objets donnés sont les bons
         if  isinstance(pic,Pic):
@@ -108,9 +112,9 @@ class Serveur(Verb):
         else:
             raise ClasseInvalideError("La classe de bar n'est pas bonne" )
         self.commandes = commandes
+        self.verrou = threading.Lock()
 
     async def prendre_commande(self):
-        """ Prend une commande et embroche un post-it. """
 
         if len(self.commandes) ==0: 
             print("Il n'y a pas de commande, le bar ferme")
@@ -118,29 +122,30 @@ class Serveur(Verb):
         else:
             while len(self.commandes)>=1:
                 c = self.commandes.pop(0) #retire le premier elt de la liste et le renvoi
-                print(f'[{self.__class__.__name__}] je prends commande de {c}') 
-                logging.info(f'[{self.__class__.__name__}] fonction prendre_commande utilisée au temps {time.time()-t0}')
-                await asyncio.sleep(self.pic.tc)#temps de commande
-                if (Verb.v ==1) or (Verb.v ==2):
-                    print(f"[{self.pic.__class__.__name__}] post-it '{c}' embroché")
-                self.pic.embrocher(c)
-                print(self.pic)
+                if c == None:
+                    break
+                else:
+                    print(f'[{self.__class__.__name__}] je prends commande de {c}') 
+                    logging.info(f'[{self.__class__.__name__}] fonction prendre_commande utilisée au temps {time.time()-t0}')
+                    await asyncio.sleep(self.pic.tc)#temps de commande
+                    if (Verb.v ==1) or (Verb.v ==2):
+                        print(f"[{self.pic.__class__.__name__}] post-it '{c}' embroché")
+                    self.verrou.acquire()
+                    self.pic.embrocher(c)
+                    self.verrou.release()
+                    print(self.pic)
                 if len(self.commandes)==0:
                     print(f"[{self.__class__.__name__}] il n'y a plus de commande à prendre")
         
-
-
-
     async def servir(self):
-        """ Prend un plateau sur le bar. """
-        temps = time.time()
-        nb_commande = len(self.commandes) + 1 
-        temps_max = nb_commande * (self.pic.tc + self.pic.ts + self.bar.tp )
         try:
             while True:
-                c = self.bar.evacuer() #Renvoie une commande qui peut être un None
+                await asyncio.sleep(self.bar.tp )
+                self.verrou.acquire()
+                c = self.bar.evacuer() 
+                self.verrou.release()
                 if c == None:
-                    await asyncio.sleep(self.bar.tp + self.pic.tc ) # Attendre un peu la commande va arriver sur le bar 
+                    continue
                 else:
                     if (Verb.v ==1) or (Verb.v ==2):
                         print(f"[{self.bar.__class__.__name__}] '{c}' évacué")
@@ -150,36 +155,40 @@ class Serveur(Verb):
                     logging.info(f'[{self.__class__.__name__}] fonction servir utilisée au temps {time.time()-t0}')
                     await asyncio.sleep(self.pic.ts)
                     print(f'[{self.__class__.__name__}] je sers {c}')
-                    print('RRRRRRRRRRRRR')
-                    if (time.time()- temps)> temps_max:
-                        sys.exit()
-               
-
-        except:
-            sys.exit()
+        except KeyboardInterrupt:
+            print("Arrêt manuel par l'utilisateur.")
+            sys.exit() 
+                
+        
+    async def run_serveur(self):
+        loop_serveur = asyncio.new_event_loop() # créer une nouvelle boucle asyncio spécifique à chaque thread. Chaque thread doit avoir sa propre boucle asyncio
+        asyncio.set_event_loop(loop_serveur) # indiquez à Python quelle boucle asyncio doit être utilisée pour gérer les opérations asynchrones dans le thread actuel
+        asyncio.gather(self.prendre_commande(), self.servir())
             
-
             
             
-
             
-                               
+                          
 
-class Barman(Verb):
+class Barman(Verb,threading.Thread): 
     def __init__(self,pic,bar):
+        threading.Thread.__init__(self)
         print(f"[{self.__class__.__name__}] prêt pour le service !")
         self.pic = pic
         self.bar = bar
+        self.verrou = threading.Lock()
+        
 
     async def preparer(self):
         """ Prend un post-it, prépare la commande et la dépose sur le bar. """
-        while len(self.pic.liste_attente)==0: #permets au barman d'attendre 
-            await asyncio.sleep(self.pic.tc) 
-            if len(self.pic.liste_attente)==0: #si il a attendu un temps de commande et que rien n'est arrivé il peut rentrer chez lui, il n'y a plus de commande
-                break
-            else:
-                while len(self.pic.liste_attente)>=1:
-                    c = self.pic.liberer()
+        try:
+            while True:
+                self.verrou.acquire()
+                c = self.pic.liberer()
+                self.verrou.release()
+                if c == None:
+                    time.sleep(self.pic.tc)
+                else:
                     if (Verb.v ==1) or (Verb.v ==2):
                         print(f"[{self.pic.__class__.__name__}] post-it '{c}' libéré")
                     if len(self.pic.liste_attente) == 0:
@@ -190,11 +199,35 @@ class Barman(Verb):
                     await asyncio.sleep(self.bar.tp)
                     logging.info(f'[{self.__class__.__name__}] fonction prepare utilisée au temps {time.time()-t0}')
                     print(f'[{self.__class__.__name__}] je termine la fabrication de {c}')
+                    self.verrou.acquire()
                     self.bar.recevoir(c)
+                    self.bar.encaisser.append(c)
+                    self.verrou.release()
                     if (Verb.v ==1) or (Verb.v ==2):
                         print(f"[{self.bar.__class__.__name__}] '{c}' reçu")
                     print(self.bar)
+        except KeyboardInterrupt:
+            print("Arrêt manuel par l'utilisateur.")
+            sys.exit() 
+
+    async def encaisser(self):
+        while True:
+            if len(self.bar.encaisser)>=1:
+                self.verrou.acquire()
+                c = self.bar.encaisser.pop()
+                self.verrou.release()
+                tconso = 1 
+                await asyncio.sleep(self.pic.ts + tconso )
+                print(f"J'encaisse la commande {c}")
+                logging.info(f'[{self.__class__.__name__}] fonction encaissée utilisée au temps {time.time()-t0}')
             
+                
+    async def run_barman(self):
+        loop_barman = asyncio.new_event_loop() # créer une nouvelle boucle asyncio spécifique à chaque thread. Chaque thread doit avoir sa propre boucle asyncio
+        asyncio.set_event_loop(loop_barman) # indiquez à Python quelle boucle asyncio doit être utilisée pour gérer les opérations asynchrones dans le thread actuel
+        await asyncio.gather(self.encaisser(), self.preparer())
+
+
 
 # Fermeture du gestionnaire de journalisation 
 logging.shutdown()

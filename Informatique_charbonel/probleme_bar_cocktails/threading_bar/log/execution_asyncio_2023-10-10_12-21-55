@@ -1,0 +1,13 @@
+2023-10-10 12:21:55,586 - DEBUG - Using selector: EpollSelector
+2023-10-10 12:21:55,586 - DEBUG - Using selector: EpollSelector
+2023-10-10 12:21:55,586 - INFO - [Serveur] fonction prendre_commande utilisée au temps 0.0008649826049804688
+2023-10-10 12:21:55,586 - ERROR - _GatheringFuture exception was never retrieved
+future: <_GatheringFuture finished exception=CancelledError()>
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 605, in sleep
+    return await future
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+asyncio.exceptions.CancelledError

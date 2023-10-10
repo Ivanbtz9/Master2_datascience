@@ -1,0 +1,8 @@
+2023-10-09 15:27:31,735 - INFO - [Serveur] fonction prendre_commande utilisée au temps 0.0005898475646972656
+2023-10-09 15:27:32,736 - INFO - [Pic] fonction ajouter utilisée au temps 1.002293348312378
+2023-10-09 15:27:32,737 - INFO - [Serveur] fonction prendre_commande utilisée au temps 1.0030815601348877
+2023-10-09 15:27:33,739 - INFO - [Pic] fonction ajouter utilisée au temps 2.004674196243286
+2023-10-09 15:27:33,739 - INFO - [Serveur] fonction prendre_commande utilisée au temps 2.005138397216797
+2023-10-09 15:27:34,741 - INFO - [Pic] fonction ajouter utilisée au temps 3.006685972213745
+2023-10-09 15:27:34,741 - INFO - [Serveur] fonction prendre_commande utilisée au temps 3.0072813034057617
+2023-10-09 15:27:35,743 - INFO - [Pic] fonction ajouter utilisée au temps 4.008420944213867
