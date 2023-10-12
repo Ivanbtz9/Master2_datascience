@@ -77,6 +77,7 @@ class Pic(Accessoire):
         #Le pic stock les infos temps du serveur
         self.tc = temps_commande
         self.ts = temps_service
+        self.lock_pic = threading.Lock()
 
     def embrocher(self,postit):
         super().ajouter(postit)
@@ -86,11 +87,14 @@ class Pic(Accessoire):
 
 class Bar(Accessoire):
     """ Un bar peut recevoir des plateaux/commandes, et évacuer le dernier reçu """
-    def __init__(self,temps_preparation):
+    def __init__(self,temps_preparation,temps_de_travail):
         super().__init__()
         #Le bar stock les infos temps du barman
         self.tp = temps_preparation
         self.encaisser = []
+        self.lock_bar = threading.Lock()
+        self.lock_encaisser = threading.Lock()
+        self.temps_de_travail = temps_de_travail
 
     def recevoir(self,plateau):
         super().ajouter(plateau)
@@ -99,6 +103,7 @@ class Bar(Accessoire):
         return super().retirer()
 
 class Serveur(Verb,threading.Thread):
+
     def __init__(self,pic,bar,commandes):
         threading.Thread.__init__(self)
         print(f"[{self.__class__.__name__}] prêt pour le service")
@@ -112,82 +117,106 @@ class Serveur(Verb,threading.Thread):
         else:
             raise ClasseInvalideError("La classe de bar n'est pas bonne" )
         self.commandes = commandes
-        self.verrou = threading.Lock()
+        self.state_serveur = True
+        
 
-    async def prendre_commande(self):
+    def travail_serveur(self):
 
         if len(self.commandes) ==0: 
             print("Il n'y a pas de commande, le bar ferme")
             sys.exit() #permet d'arreter le programme s'il n'y a pas de commande
         else:
-            while len(self.commandes)>=1:
-                c = self.commandes.pop(0) #retire le premier elt de la liste et le renvoi
-                if c == None:
-                    break
-                else:
-                    print(f'[{self.__class__.__name__}] je prends commande de {c}') 
-                    logging.info(f'[{self.__class__.__name__}] fonction prendre_commande utilisée au temps {time.time()-t0}')
-                    await asyncio.sleep(self.pic.tc)#temps de commande
-                    if (Verb.v ==1) or (Verb.v ==2):
-                        print(f"[{self.pic.__class__.__name__}] post-it '{c}' embroché")
-                    self.verrou.acquire()
-                    self.pic.embrocher(c)
-                    self.verrou.release()
-                    print(self.pic)
-                if len(self.commandes)==0:
-                    print(f"[{self.__class__.__name__}] il n'y a plus de commande à prendre")
-        
-    async def servir(self):
-        try:
-            while True:
-                await asyncio.sleep(self.bar.tp )
-                self.verrou.acquire()
-                c = self.bar.evacuer() 
-                self.verrou.release()
-                if c == None:
-                    continue
-                else:
-                    if (Verb.v ==1) or (Verb.v ==2):
-                        print(f"[{self.bar.__class__.__name__}] '{c}' évacué")
-                    print(self.bar)
-                    if len(self.bar.liste_attente) == 0:
-                        print(self.bar,'\nBar est vide') 
-                    logging.info(f'[{self.__class__.__name__}] fonction servir utilisée au temps {time.time()-t0}')
-                    await asyncio.sleep(self.pic.ts)
-                    print(f'[{self.__class__.__name__}] je sers {c}')
-        except KeyboardInterrupt:
-            print("Arrêt manuel par l'utilisateur.")
-            sys.exit() 
-                
-        
-    async def run_serveur(self):
-        loop_serveur = asyncio.new_event_loop() # créer une nouvelle boucle asyncio spécifique à chaque thread. Chaque thread doit avoir sa propre boucle asyncio
-        asyncio.set_event_loop(loop_serveur) # indiquez à Python quelle boucle asyncio doit être utilisée pour gérer les opérations asynchrones dans le thread actuel
-        asyncio.gather(self.prendre_commande(), self.servir())
+            try:
+                while self.state_serveur:
+                    #Essaye d'évacuer le BAR 
+                    
+                    with self.bar.lock_bar:
+                        c = self.bar.evacuer() 
+
+                    if c == None:
+                        pass
+                    else:
+                        #Remplir la liste des encaissements
+                        
+                        with self.bar.lock_encaisser:
+                            self.bar.encaisser.append(c)
+                        
+
+                        if (Verb.v ==1) or (Verb.v ==2):
+                            print(f"[{self.bar.__class__.__name__}] '{c}' évacué")
+                        print(self.bar)
+                        if len(self.bar.liste_attente) == 0:
+                            print(self.bar,'\nBar est vide') 
+                        logging.info(f'[{self.__class__.__name__}] fonction servir utilisée au temps {time.time()-t0}')
+                        time.sleep(self.pic.ts)
+                        print(f'[{self.__class__.__name__}] je sers {c}')
+
+                    if len(self.commandes)>=1:
+                        c = self.commandes.pop(0) #retire le premier elt de la liste et le renvoi
+                        
+                        print(f'[{self.__class__.__name__}] je prends commande de {c}') 
+                        logging.info(f'[{self.__class__.__name__}] fonction prendre_commande utilisée au temps {time.time()-t0}')
+                        time.sleep(self.pic.tc)#temps de commande
+                        if (Verb.v ==1) or (Verb.v ==2):
+                            print(f"[{self.pic.__class__.__name__}] post-it '{c}' embroché")
+                        
+                        with self.pic.lock_pic:
+                            self.pic.embrocher(c)
+                        
+                        print(self.pic)
+
+                        if len(self.commandes)==0:
+                            print(f"[{self.__class__.__name__}] il n'y a plus de commande à prendre")
+
+                    if time.time()-t0 >= self.bar.temps_de_travail:
+                        self.state_serveur = False
+                    else:
+                        continue
+
+            except KeyboardInterrupt:
+                print("Arrêt manuel par l'utilisateur.")
+                sys.exit() 
+
+    def run(self):
+        self.travail_serveur()
             
-            
-            
-            
-                          
+                                
 
 class Barman(Verb,threading.Thread): 
+
     def __init__(self,pic,bar):
         threading.Thread.__init__(self)
         print(f"[{self.__class__.__name__}] prêt pour le service !")
         self.pic = pic
         self.bar = bar
-        self.verrou = threading.Lock()
-        
+        self.state_barman = True
+    
 
-    async def preparer(self):
-        """ Prend un post-it, prépare la commande et la dépose sur le bar. """
+
+    def travail_barman(self):
+        time.sleep(self.pic.tc)
+
         try:
-            while True:
-                self.verrou.acquire()
-                c = self.pic.liberer()
-                self.verrou.release()
+            while self.state_barman:
+                
+                with self.bar.lock_encaisser:
+                    try:
+                        c = self.bar.encaisser.pop()
+                    except:
+                        c = None
+
                 if c == None:
-                    time.sleep(self.pic.tc)
+                    pass
+                else:
+                    print(f"J'encaisse la commande {c}")
+                    logging.info(f'[{self.__class__.__name__}] fonction encaissée utilisée au temps {time.time()-t0}')
+                    
+                
+                with self.pic.lock_pic:
+                    c = self.pic.liberer()
+                
+                if c == None:
+                    pass
                 else:
                     if (Verb.v ==1) or (Verb.v ==2):
                         print(f"[{self.pic.__class__.__name__}] post-it '{c}' libéré")
@@ -196,38 +225,28 @@ class Barman(Verb,threading.Thread):
                     else: 
                         print(self.pic)
                     print(f'[{self.__class__.__name__}] je commence la fabrication de {c}')
-                    await asyncio.sleep(self.bar.tp)
+                    time.sleep(self.bar.tp)
                     logging.info(f'[{self.__class__.__name__}] fonction prepare utilisée au temps {time.time()-t0}')
                     print(f'[{self.__class__.__name__}] je termine la fabrication de {c}')
-                    self.verrou.acquire()
-                    self.bar.recevoir(c)
-                    self.bar.encaisser.append(c)
-                    self.verrou.release()
+                    
+                    with self.bar.lock_bar:
+                        self.bar.recevoir(c)
+
                     if (Verb.v ==1) or (Verb.v ==2):
                         print(f"[{self.bar.__class__.__name__}] '{c}' reçu")
                     print(self.bar)
+
+                if time.time()-t0 >= self.bar.temps_de_travail:
+                    self.state_barman = False
+                else:
+                    continue
+
+
         except KeyboardInterrupt:
             print("Arrêt manuel par l'utilisateur.")
             sys.exit() 
 
-    async def encaisser(self):
-        while True:
-            if len(self.bar.encaisser)>=1:
-                self.verrou.acquire()
-                c = self.bar.encaisser.pop()
-                self.verrou.release()
-                tconso = 1 
-                await asyncio.sleep(self.pic.ts + tconso )
-                print(f"J'encaisse la commande {c}")
-                logging.info(f'[{self.__class__.__name__}] fonction encaissée utilisée au temps {time.time()-t0}')
-            
-                
-    async def run_barman(self):
-        loop_barman = asyncio.new_event_loop() # créer une nouvelle boucle asyncio spécifique à chaque thread. Chaque thread doit avoir sa propre boucle asyncio
-        asyncio.set_event_loop(loop_barman) # indiquez à Python quelle boucle asyncio doit être utilisée pour gérer les opérations asynchrones dans le thread actuel
-        await asyncio.gather(self.encaisser(), self.preparer())
-
-
-
-# Fermeture du gestionnaire de journalisation 
+    def run(self):
+        self.travail_barman()
+        
 logging.shutdown()

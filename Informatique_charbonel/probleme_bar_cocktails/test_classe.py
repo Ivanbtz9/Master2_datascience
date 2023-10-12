@@ -117,9 +117,16 @@ class Serveur(Verb,threading.Thread):
             raise ClasseInvalideError("La classe de bar n'est pas bonne" )
         self.commandes = commandes
         self.state_serveur = True
+
+    async def temps_conso(self,c):
+        await asyncio.sleep(self.pic.ts + 1)
+        #Remplir la liste des encaissements      
+        with self.bar.lock_encaisser:
+            self.bar.encaisser.append(c)
+
         
 
-    def travail_serveur(self):
+    async def travail_serveur(self):
 
         if len(self.commandes) ==0: 
             print("Il n'y a pas de commande, le bar ferme")
@@ -134,13 +141,8 @@ class Serveur(Verb,threading.Thread):
 
                     if c == None:
                         pass
-                    else:
-                        #Remplir la liste des encaissements
-                        
-                        with self.bar.lock_encaisser:
-                            self.bar.encaisser.append(c)
-                        
-
+                    else:                      
+                        self.temps_conso(c)
                         if (Verb.v ==1) or (Verb.v ==2):
                             print(f"[{self.bar.__class__.__name__}] '{c}' évacué")
                         print(self.bar)
