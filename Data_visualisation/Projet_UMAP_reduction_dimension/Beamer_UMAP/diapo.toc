@@ -1,0 +1,8 @@
+\babel@toc {french}{}\relax 
+\beamer@sectionintoc {1}{Les intérêts de la méthode UMAP sur un jeu de données}{4}{0}{1}
+\beamer@sectionintoc {2}{Présentation théorique de la méthode UMAP}{6}{0}{2}
+\beamer@subsectionintoc {2}{1}{Matrice de probabilités jointes sur l'espace de départ}{8}{0}{2}
+\beamer@subsectionintoc {2}{2}{Similarité entre les individus de l'espace d'arrivé}{9}{0}{2}
+\beamer@subsectionintoc {2}{3}{Fonction d'entropie croisée et minimisation}{10}{0}{2}
+\beamer@sectionintoc {3}{Utiliser UMAP au quotidien et ses résultats}{11}{0}{3}
+\beamer@sectionintoc {4}{Conclusion et faiblesses de UMAP}{12}{0}{4}
