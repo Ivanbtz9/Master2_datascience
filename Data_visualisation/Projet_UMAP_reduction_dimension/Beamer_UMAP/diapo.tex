@@ -107,7 +107,7 @@
 				\begin{center}
 					\includegraphics[scale=0.27]{umap2_swiss_roll.png}			
 					\caption{UMAP projection du nuage de points dans un plan.\\ 
-					(n\_neighbors=15, min\_dist = 0.1) }
+					(n\_neighbors=500, min\_dist = 0.5) }
 				\end{center}
 				
 		\end{figure}\end{minipage}
@@ -121,19 +121,19 @@
 \begin{frame}
 \frametitle{Présentation théorique de la méthode UMAP}
 \begin{rmq}
-	L'algorithme de UMAP ressemble à celui de T-SNE. Il est présenté comme plus rapide et pouvant s'adapter à une réduction de la dimension $d\geq2$. UMAP préserve aussi davantage la structure globale du jeu de donnés par rapport à T-SNE.
+	L'algorithme de UMAP ressemble à celui de T-SNE. Il est présenté comme plus rapide et pouvant s'adapter à une réduction de la dimension $d\geq2$. UMAP préserve aussi davantage la structure globale du jeu de donnés par rapport à T-SNE. %Il est plus stable face à la répétition du procédé car les conditions initiales ne sont pas choisies aléatoirement.
 \end{rmq}
-\quad \\[0.5cm]
-	\textcolor{modernvert}{\textbf{Idée :}}\\ Pour un jeu de données $X\in\mathcal{M}_{n,p}(\R)$ nous cherchons préserver les relations locales entre les individus dans un espace de dimension plus petit ($d \lll p$). Cela revient à trouver $Y\in\mathcal{M}_{n,d}(\R)$ sous certaines contraintes.\\
+\quad \\[0.15cm]
+	\textcolor{modernvert}{\textbf{Idée :}}\\ Pour un jeu de données $X\in\mathcal{M}_{n,p}(\R)$ nous cherchons à préserver les relations locales entre les individus dans un espace de dimension plus petit ($d \lll p$). Cela revient à trouver $Y\in\mathcal{M}_{n,d}(\R)$ sous certaines contraintes.\\
 	
 	
 \end{frame}
 
 \begin{frame}
-\textcolor{modernvert}{\textbf{Les étapes importantes :}}
+\textcolor{modernvert}{\textbf{Les étapes importantes :}}\\[0.5cm]
 \begin{enumerate}
-	\item  Pour un nombre de voisins k fixé, donner pour tout couple d'individu $(x_i,x_j)$ une probabilité $p_{i,j}$ d'appartenir à un même voisinage.
-	\item Initialiser la matrice $Y$ et en déduire la similarité entre les couples d'individu $(y_i,y_j)$ que l'on note $q_{i,j}$.
+	\item  Pour un nombre de voisins k fixé, donner pour tout couple d'individus $(x_i,x_j)$ une probabilité $p_{i,j}$ d'appartenir à un même voisinage.
+	\item Initialiser la matrice $Y$ et en déduire la similarité entre les couples d'individus $(y_i,y_j)$ que l'on note $q_{i,j}$.
 	\item Minimiser sur l'espace d'arrivée une fonction objectif d’entropie croisée qui mesure la dissimilarité entre les deux distributions $p$ et $q$. Ici $q$ est une fonction de $Y$.
 \end{enumerate}	
 	
@@ -147,7 +147,7 @@
 
 	\begin{itemize}
 		\item  On définit $\rho_i = \underset{i\neq j}{\min}\|x_i-x_j\|$.
-		\item On définit $\sigma_i$ de telle sorte que $\displaystyle \sum_{j=1}^{k}p_{i|i_j} = \log_2(k)$
+		\item L'individu $i$ est l'un des $k$ voisins de l'individu $i$ et on définit $\sigma_i$ de telle sorte que $\displaystyle \sum_{j=1}^{k}\exp\left(-\dfrac{\max(0,\|x_i -x_j\|_2-\rho_i)}{\sigma_i}\right) = \log_2(k)$
 	\end{itemize}
 	\item Symétrisation pour obtenir la probabilité d'appartenir à un même voisinage : 
 	$$p_{i,j} = p_{i|j} + p_{j|i} - p_{i|j} \times p_{j|i}$$ 
@@ -169,9 +169,9 @@
 			\exp(-\|y_i-y_j\|) &\text{ si } & \|y_i-y_j\|> \textit{min\_dist}
 		\end{array}\right.$$
 	
-		\item Pour cela on s'inspire d'une loi de Student
+		\item Pour cela on s'inspire d'une loi de Student et on pose:
 		$$q_{i,j} = \left(1+ a\|y_i-y_j\|^{2b}\right)^{-1}$$ 
-		L'algorithme UMAP optimise les deux paramètres $(a,b)$ pour coller au mieux à la fonctions précédente.  
+		L'algorithme UMAP optimise les deux paramètres $(a,b)$ pour coller au mieux à la fonction précédente qui est définie par morceaux.  
 	\end{enumerate}
 	
 	
@@ -181,9 +181,9 @@
 \begin{frame}
 	\frametitle{Fonction d'entropie croisée et minimisation}
 
-	\textcolor{modernvert}{\textbf{But :}} trouver la distribution des points $y_i$ dans l'espace d'arrivée telles que les similarités $q_{i,j}$ s'approchent le plus possibles des similarités $p_{i,j}$.
+	\textcolor{modernvert}{\textbf{But :}} trouver la distribution des points $y_i$ dans l'espace d'arrivée telle que les similarités $q_{i,j}$ s'approchent le plus possible des similarités $p_{i,j}$.
 	\begin{itemize}
-		\item Introduction de la fonction d’entropie croisée : 
+		\item Une fonction d’entropie croisée reliée à la divergence de Kullback-Leiber : 
 		
 	\end{itemize}
 \begin{align*}
@@ -194,7 +194,7 @@
 		
 		\item Minimiser la fonction d'entropie croisée à l'aide d'une descente de gradient stochastique :\\[-0.25cm]
 		
-		$$y_i : = y_i -\alpha \nabla_iCE (y_1,\cdots,y_i,\cdot,y_n)$$
+		$$y_i : = y_i -\alpha \nabla_iCE (y_1,\cdots,y_i,\cdots,y_n)$$
 		 
 	\end{itemize}
 	
@@ -206,20 +206,104 @@
 \section{Utiliser UMAP au quotidien et ses résultats}
 \begin{frame}
 	\frametitle{Utiliser UMAP au quotidien et ses résultats}
+	\begin{itemize}
+		\item Installer umap-learn et le charger.\\[0.25cm]
+		
+		\includegraphics[scale=0.3]{1.png}
+		
+		\item Charger un jeu de donnés type Swiss\_Roll.\\[0.25cm]
+
+		\includegraphics[scale=0.3]{2.png}
+		
+		\item Entraînement et projection dans le plan.\\[0.25cm]
+		
+		\includegraphics[scale=0.3]{3.png}
+		
+	\end{itemize}
 	
+\end{frame}
+
+\begin{frame}
+	\begin{figure}
+		\centering		
+		\includegraphics[scale=0.4]{squash_stored.png}
+		\textit{umap.UMAP(init=X\_acp,n\_neighbors=25, min\_dist=0.02, n\_components=2)}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\begin{figure}
+		\centering		
+		\includegraphics[scale=0.4]{pasture.png}
+		\textit{umap.UMAP(init=X\_acp,n\_neighbors=5, min\_dist=1, n\_components=2)}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\begin{figure}
+		\centering		
+		\includegraphics[scale=0.4]{bondrate.png}
+		\textit{umap.UMAP(init=X\_acp,n\_neighbors=25, min\_dist=0.1, n\_components=2)}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\begin{figure}
+		\centering		
+		\includegraphics[scale=0.4]{thyroide.png}
+		\textit{umap.UMAP(init=X\_acp,n\_neighbors=100, min\_dist=0.5, n\_components=2)}
+	\end{figure}
 	
 \end{frame}
 
 \section{Conclusion et faiblesses de UMAP}
 
 \begin{frame}
-	\frametitle{Conclusion et faiblesses de UMAP}
+	\frametitle{Faiblesses de UMAP}
+	\begin{itemize}
+
+		
+		\item[$\textcolor{red}{\bullet}$] UMAP est une méthode non-paramétrique  donc il est impossible de projeter une nouvelle observation, il faut refaire l’optimisation.\\[0.5cm] 
+		\item[$\textcolor{red}{\bullet}$] À l'inverse d'une méthode de réduction de dimension par projection linéaire type ACP, avec UMAP les coordonnées des observations dans l'espace d'arrivée sont moins interprétables physiquement.\\[0.5cm]  
+		\item[$\textcolor{red}{\bullet}$] La recherche des bons paramètres \textbf{n\_neighborgs} et \textbf{min\_dist} n'est pas  évidente et ne permet pas toujours de rendre une vision globale des données initiales.  
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Conclusion}
 	\begin{itemize}
 		
-		\item[$\textcolor{modernvert}{\bullet}$] Pour des datasets qui présentent une structure topologique marquée dans chaque sous groupe, les rendus de l'algorithme UMAP sont visibles et permettent bien de visualiser les clusters.\\[1cm] 
-		\item[$\textcolor{red}{\bullet}$] À l'inverse d'une méthode de réduction de dimension par projection linéaire type ACP, avec UMAP les coordonnées des observations dans l'espace d'arrivée sont moins interprétables physiquement. 
-		\item[$\textcolor{red}{\bullet}$] La recherche des bons paramètres \textbf{n\_neighborgs} et \textbf{min\_dist} n'est pas  évidente et ne permets pas toujours de rendre une vision globales des données initiales.  
+		\item[$\textcolor{modernvert}{\bullet}$] Pour des datasets qui présentent une structure topologique marquée dans chaque sous groupe, les rendus de l'algorithme UMAP sont visibles et permettent bien de visualiser les clusters. \\[0.5cm] 
+		
+		\item[$\textcolor{modernvert}{\bullet}$] Ainsi avec UMAP sur Digits, votre modèle de machine learning type KNN ou Random Forest obtient des meilleurs scores et devient plus rapide à l'exécution. \\[0.25cm]
 	\end{itemize}
+
+	\begin{minipage}[t]{1\linewidth}
+	\begin{minipage}[t]{0.3\linewidth}\centering\begin{figure}
+			\centering
+			\includegraphics[scale=0.2]{digits.png}
+			\caption*{Digits Dataset.}
+	\end{figure}\end{minipage}\hfil 
+	\begin{minipage}[t]{0.3\linewidth}\centering\begin{figure}
+			\begin{center}
+				\includegraphics[scale=0.12]{umap_digits.png}			
+				\caption*{UMAP projection Didgits.}
+			\end{center}
+			
+	\end{figure}\end{minipage}\hfil \begin{minipage}[t]{0.3\linewidth}\centering\begin{figure}
+\begin{center}
+	\includegraphics[scale=0.2]{acp_digits.png}			
+	\caption*{ACP Didgits}
+\end{center}
+
+\end{figure}\end{minipage}
+\end{minipage}
+
+
 	
 \end{frame}
 

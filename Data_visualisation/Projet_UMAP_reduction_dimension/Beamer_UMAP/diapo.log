@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.23)  14 OCT 2023 17:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.23)  15 OCT 2023 17:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1149,7 +1149,7 @@ Overfull \hbox (28.57301pt too wide) has occurred while \output is active
 [4
 
 ]
-<acp_swiss_roll.png, id=186, 658.46pt x 498.86375pt>
+<acp_swiss_roll.png, id=187, 658.46pt x 498.86375pt>
 File: acp_swiss_roll.png Graphic file (type png)
 <use acp_swiss_roll.png>
 Package pdftex.def Info: acp_swiss_roll.png  used on input line 117.
@@ -1159,7 +1159,7 @@ Overfull \hbox (27.69855pt too wide) in paragraph at lines 117--117
  [] 
  []
 
-<umap2_swiss_roll.png, id=187, 573.14125pt x 449.68pt>
+<umap2_swiss_roll.png, id=188, 573.14125pt x 449.68pt>
 File: umap2_swiss_roll.png Graphic file (type png)
 <use umap2_swiss_roll.png>
 Package pdftex.def Info: umap2_swiss_roll.png  used on input line 117.
@@ -1242,20 +1242,130 @@ Overfull \hbox (28.57301pt too wide) has occurred while \output is active
 [10
 
 ]
+<1.png, id=370, 320.19624pt x 74.2775pt>
+File: 1.png Graphic file (type png)
+<use 1.png>
+Package pdftex.def Info: 1.png  used on input line 224.
+(pdftex.def)             Requested size: 96.0596pt x 22.28342pt.
+<2.png, id=371, 523.9575pt x 132.495pt>
+File: 2.png Graphic file (type png)
+<use 2.png>
+Package pdftex.def Info: 2.png  used on input line 224.
+(pdftex.def)             Requested size: 157.18846pt x 39.7488pt.
+<3.png, id=372, 881.2925pt x 197.73875pt>
+File: 3.png Graphic file (type png)
+<use 3.png>
+Package pdftex.def Info: 3.png  used on input line 224.
+(pdftex.def)             Requested size: 264.38979pt x 59.32208pt.
+
 Overfull \hbox (28.57301pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [11
 
-]
+ <./1.png> <./2.png> <./3.png>]
+<squash_stored.png, id=404, 812.03375pt x 444.66125pt>
+File: squash_stored.png Graphic file (type png)
+<use squash_stored.png>
+Package pdftex.def Info: squash_stored.png  used on input line 233.
+(pdftex.def)             Requested size: 324.80774pt x 177.86134pt.
+
 Overfull \hbox (28.57301pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [12
 
+ <./squash_stored.png>]
+<pasture.png, id=432, 812.03375pt x 444.66125pt>
+File: pasture.png Graphic file (type png)
+<use pasture.png>
+Package pdftex.def Info: pasture.png  used on input line 242.
+(pdftex.def)             Requested size: 324.80774pt x 177.86134pt.
+
+Overfull \hbox (28.57301pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[13
+
+ <./pasture.png>]
+<bondrate.png, id=461, 812.03375pt x 444.66125pt>
+File: bondrate.png Graphic file (type png)
+<use bondrate.png>
+Package pdftex.def Info: bondrate.png  used on input line 251.
+(pdftex.def)             Requested size: 324.80774pt x 177.86134pt.
+
+Overfull \hbox (28.57301pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[14
+
+ <./bondrate.png>]
+<thyroide.png, id=488, 812.03375pt x 444.66125pt>
+File: thyroide.png Graphic file (type png)
+<use thyroide.png>
+Package pdftex.def Info: thyroide.png  used on input line 260.
+(pdftex.def)             Requested size: 324.80774pt x 177.86134pt.
+
+Overfull \hbox (28.57301pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[15
+
+ <./thyroide.png>]
+Overfull \hbox (28.57301pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[16
+
 ]
+<digits.png, id=541, 516.93124pt x 303.1325pt>
+File: digits.png Graphic file (type png)
+<use digits.png>
+Package pdftex.def Info: digits.png  used on input line 308.
+(pdftex.def)             Requested size: 103.38441pt x 60.62541pt.
+
+Overfull \hbox (0.69476pt too wide) in paragraph at lines 308--308
+ [] 
+ []
+
+<umap_digits.png, id=542, 868.24374pt x 661.47125pt>
+File: umap_digits.png Graphic file (type png)
+<use umap_digits.png>
+Package pdftex.def Info: umap_digits.png  used on input line 308.
+(pdftex.def)             Requested size: 104.18475pt x 79.37312pt.
+
+Overfull \hbox (1.4951pt too wide) in paragraph at lines 308--308
+ [] 
+ []
+
+<acp_digits.png, id=543, 578.16pt x 375.4025pt>
+File: acp_digits.png Graphic file (type png)
+<use acp_digits.png>
+Package pdftex.def Info: acp_digits.png  used on input line 308.
+(pdftex.def)             Requested size: 115.62994pt x 75.07916pt.
+
+Overfull \hbox (12.94029pt too wide) in paragraph at lines 308--308
+ [] 
+ []
+
+
+Overfull \vbox (4.57436pt too high) detected at line 308
+ []
+
+
+Overfull \hbox (28.57301pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[17
+
+ <./digits.png> <./umap_digits.png> <./acp_digits.png>]
 \tf@nav=\write6
 \openout6 = `diapo.nav'.
 
@@ -1270,11 +1380,11 @@ Package rerunfilecheck Info: File `diapo.out' has not changed.
 (rerunfilecheck)             Checksum: 3DD65CA8B480894FFE6E59FC03A4DB91;2094.
  ) 
 Here is how much of TeX's memory you used:
- 26353 strings out of 478287
- 514552 string characters out of 5849289
- 757039 words of memory out of 5000000
- 43975 multiletter control sequences out of 15000+600000
- 723295 words of font info for 88 fonts, out of 8000000 for 9000
+ 26442 strings out of 478287
+ 515751 string characters out of 5849289
+ 758039 words of memory out of 5000000
+ 44045 multiletter control sequences out of 15000+600000
+ 722848 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,122p,468b,815s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/fira/fir_iln36p.enc}</usr/shar
@@ -1291,10 +1401,10 @@ cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on diapo.pdf (12 pages, 779815 bytes).
+Output written on diapo.pdf (17 pages, 1387224 bytes).
 PDF statistics:
- 490 PDF objects out of 1000 (max. 8388607)
- 412 compressed objects within 5 object streams
- 32 named destinations out of 1000 (max. 500000)
- 215 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 645 PDF objects out of 1000 (max. 8388607)
+ 541 compressed objects within 6 object streams
+ 42 named destinations out of 1000 (max. 500000)
+ 265 words of extra memory for PDF output out of 10000 (max. 10000000)
 
