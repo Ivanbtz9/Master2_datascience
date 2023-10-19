@@ -5,7 +5,6 @@ import logging
 import datetime
 import threading
 import asyncio
-import numpy.random as npr
 
 
 #Données temporelles
