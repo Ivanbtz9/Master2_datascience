@@ -143,11 +143,11 @@
 \begin{frame}
 \frametitle{Matrice de probabilités jointes sur l'espace de départ}
 \begin{enumerate}
-	\item Fixons $k\geq 2$ le nombre de voisins à considérer. Soit $x_i,x_j$ deux individus, la similarité $p_{i|j}$ entre deux observations est définie par :$$p_{i|j} = \exp\left(-\dfrac{\|x_i -x_j\|_2-\rho_i}{\sigma_i}\right)$$
+	\item Fixons $k\geq 2$ le nombre de voisins à considérer. Soit $x_i,x_j$ deux individus, la similarité $p_{i|j}$ entre deux observations est définie par :$$p_{i|j} = \exp\left(-\dfrac{\max(0,\|x_i -x_j\|-\rho_i)}{\sigma_i}\right)$$
 
 	\begin{itemize}
-		\item  On définit $\rho_i = \underset{i\neq j}{\min}\|x_i-x_j\|$.
-		\item L'individu $i$ est l'un des $k$ voisins de l'individu $i$ et on définit $\sigma_i$ de telle sorte que $\displaystyle \sum_{j=1}^{k}\exp\left(-\dfrac{\max(0,\|x_i -x_j\|_2-\rho_i)}{\sigma_i}\right) = \log_2(k)$
+		\item  On définit $\rho_i = \underset{v\neq i}{\min}\|x_i-x_v\|$.
+		\item L'individu $i$ est l'un des $k$ voisins de l'individu $i$ et on définit $\sigma_i$ de telle sorte que $\displaystyle \sum_{v=1}^{k}\exp\left(-\dfrac{\max(0,\|x_i -x_v\|-\rho_i)}{\sigma_i}\right) = \log_2(k)$
 	\end{itemize}
 	\item Symétrisation pour obtenir la probabilité d'appartenir à un même voisinage : 
 	$$p_{i,j} = p_{i|j} + p_{j|i} - p_{i|j} \times p_{j|i}$$ 
@@ -181,7 +181,7 @@
 \begin{frame}
 	\frametitle{Fonction d'entropie croisée et minimisation}
 
-	\textcolor{modernvert}{\textbf{But :}} trouver la distribution des points $y_i$ dans l'espace d'arrivée telle que les similarités $q_{i,j}$ s'approchent le plus possible des similarités $p_{i,j}$.
+	\textcolor{modernvert}{\textbf{But :}} trouver la distribution des points $y_i$ dans l'espace d'arrivée telle que les probabilités $q_{i,j}$ s'approchent le plus possible des probabilités $p_{i,j}$.
 	\begin{itemize}
 		\item Une fonction d’entropie croisée reliée à la divergence de Kullback-Leiber : 
 		

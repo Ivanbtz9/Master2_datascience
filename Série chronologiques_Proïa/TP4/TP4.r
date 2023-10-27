@@ -1,7 +1,7 @@
 
 library(TSA)
 
-# Donn?es r?elles de conso ?lectrique
+# Donn?es réelles de conso électrique
 data(electricity)
 plot(electricity)
 Y = log(electricity)

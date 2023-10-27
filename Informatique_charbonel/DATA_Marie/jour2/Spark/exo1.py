@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 from pyspark import SparkContext
 import sys
 import re

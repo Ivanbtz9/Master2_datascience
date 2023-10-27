@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 from pyspark import SparkContext
 import sys
 import re
@@ -8,10 +10,11 @@ path = '/home/ibotcazou/Bureau/Master_data_science/DATAS_M2/Informatique_charbon
 
 lines = sc.textFile(path)
 
+
 ###Question 1
 filter_lines = lines.filter(lambda line: len(line)>0 and line[1].isdigit())
 
-"""print(filter_lines.collect())"""
+#print(filter_lines.collect())
 
 ###Question 2
 
@@ -20,7 +23,7 @@ count = filter_lines.count()
 
 # Afficher le nombre d'enregistrements
 
-"""print("Nombre d'enregistrements:", count)"""
+print("Nombre d'enregistrements:", count)
 
 ####Question 3
 
@@ -37,15 +40,15 @@ def lat(signe):
 # Appliquer la fonction de filtrage et compter les stations dans chaque hémisphère
 RDD_lat = filter_lines.map(lambda l : (lat(l[57]),1))
 
-"""print(RDD_lat.take(10)) #pour en prendre 10"""
+print(RDD_lat.take(10)) #pour en prendre 10
 
 RDD3 = RDD_lat.reduceByKey(lambda a,b:a+b)
 
 #print(RDD3.collect())
-"""
+
 print("Nombre de stations par hémisphère :")
 for hemisphere, count in RDD3.collect():
-    print(f"- {hemisphere}\t{count} stations")"""
+    print(f"- {hemisphere}\t{count} stations")
 
 ####Question 4
 
