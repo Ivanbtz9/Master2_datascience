@@ -45,3 +45,5 @@ checkupRes = function(Res,lagmax=40, lblag=5){
   plot((Res-m)/s, type="p", main=substitute(bold("Série standardisée")), xlab="", ylab="")
   abline(h=c(-1.96, 1.96), lty=2, col="red")
 }
+
+
