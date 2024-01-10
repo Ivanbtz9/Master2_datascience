@@ -21,7 +21,7 @@
 \setbeamertemplate{caption}{\insertcaption} % Utiliser le format de légende par défaut de Beamer
 
 \title{Application des séries chronologiques sur les données Dataset\_CB.csv}
-\author{Youness et Ivanhoé}
+\author{Ivanhoé \& Youness}
 \date{11 janvier 2024}
 
 \renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
@@ -36,6 +36,7 @@
 \newtheorem{cor}{Corollaire}
 \newtheorem{lem}{Lemme}
 \newtheorem{prop-def}{Propriété-définition}
+\newtheorem{con}{Conclusion}
 
 \theoremstyle{definition}
 
@@ -66,10 +67,10 @@
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.35]{1.png}\\[-0.25cm]
-	\caption*{Voici un série chronologique issue de données pseudo-réelles issue d'une consommation EDF d'un foyer.}
+	\caption*{Voici une série chronologique de données pseudo-réelles issue d'une consommation EDF d'un foyer.}
 \end{figure}
 
-\textcolor{modernvert}{\textbf{Problématique :}} Comment prédire à horizon de 7 jours la
+\textcolor{modernvert}{\textbf{Problématique :}} Comment prédire à l'horizon de 7 jours la
 consommation électrique du foyer sur la première semaine de septembre 2023 ?
 \end{frame}
 
@@ -153,6 +154,9 @@ consommation électrique du foyer sur la première semaine de septembre 2023 ?
 				\end{center}
 				
 		\end{figure}\end{minipage}
+		\begin{rmq}
+		Attention avec les tests de stationnarité, l'hétéroscédasticité n'est pas toujours repérée.
+	\end{rmq}
 	\end{minipage}
 	
 \end{frame}
@@ -160,7 +164,7 @@ consommation électrique du foyer sur la première semaine de septembre 2023 ?
 \section{Étude des corrélations}
 
 \begin{frame}
-	\frametitle{Étude des corrélations sur la série temporelle}
+	\frametitle{Étude des corrélations sur la série passée au log }
 	\begin{minipage}[t]{1\linewidth}
 		\centering
 		\includegraphics[width=0.8\linewidth]{10.png}
@@ -175,16 +179,230 @@ consommation électrique du foyer sur la première semaine de septembre 2023 ?
 				
 		\end{figure}\end{minipage}
 	\end{minipage}
-	
+
+\end{frame}
+
+\section{Recherche de modèles significatifs}
+
+\begin{frame}
+	\frametitle{Recherche de modèles à l'aide de la fonction AUTO\_ARIMA sous certaines contraintes}
+	\begin{minipage}[t]{1\linewidth}
+		\centering
+
+		\includegraphics[width=1\linewidth]{13.png}\\
+		
+		Best model:  ARIMA(5,0,0)(1,0,2)[24] intercept\\[0.5cm]
+		
+		\includegraphics[width=1\linewidth]{14.png}\\
+		Best model:  ARIMA(1,1,0)(1,0,0)[24]\\[1cm]          
+	\end{minipage}
+	\begin{rmq}
+		Commandes qui mettent beaucoup de temps à s'exécuter.
+	\end{rmq}
 \end{frame}
 
 
-\section{Recherche de modèles significatifs}
+\begin{frame}
+	\frametitle{Modèle 1 : SARIMAX(EDF.LOGCONSO, order=(5, 0, 0), seasonal\_order=(1, 0, 2, 24), trend=None)}
+	\begin{minipage}[t]{1\linewidth}
+		\centering
+		\begin{minipage}[c]{0.55\linewidth}\centering\begin{figure}
+				\centering
+				\includegraphics[width=1\linewidth]{16.png}	
+		\end{figure}\end{minipage}\hfill 
+		\begin{minipage}[c]{0.44\linewidth}\centering\begin{figure}
+				\begin{center}
+					\includegraphics[width=1\linewidth]{17.png}			
+				\end{center}
+				
+		\end{figure}\end{minipage}
+	\end{minipage}	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Modèle 2 : SARIMAX(EDF.LOGCONSO, order=(5, 0, 0), seasonal\_order=(2, 0, 2, 24), trend=None)}
+	\begin{minipage}[t]{1\linewidth}
+		\centering
+		\begin{minipage}[c]{0.55\linewidth}\centering\begin{figure}
+				\centering
+				\includegraphics[width=1\linewidth]{18.png}	
+		\end{figure}\end{minipage}\hfill 
+		\begin{minipage}[c]{0.44\linewidth}\centering\begin{figure}
+				\begin{center}
+					\includegraphics[width=1\linewidth]{19.png}			
+				\end{center}
+				
+		\end{figure}\end{minipage}
+	\end{minipage}	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Modèle 3 : SARIMAX(EDF.LOGCONSO, order=(7, 0, 0), seasonal\_order=(2, 0, 2, 24), trend=None)}
+	\begin{minipage}[t]{1\linewidth}
+		\centering
+		\begin{minipage}[c]{0.55\linewidth}\centering\begin{figure}
+				\centering
+				\includegraphics[width=1\linewidth]{20.png}	
+		\end{figure}\end{minipage}\hfill 
+		\begin{minipage}[c]{0.44\linewidth}\centering\begin{figure}
+				\begin{center}
+					\includegraphics[width=1\linewidth]{21.png}			
+				\end{center}
+				
+		\end{figure}\end{minipage}
+	\end{minipage}	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Modèle 4 : SARIMAX(EDF.LOGCONSO, order=(8, 1, 0), seasonal\_order=(2, 0, 1, 24), trend=None)}
+	\begin{minipage}[t]{1\linewidth}
+		\centering
+		\begin{minipage}[c]{0.55\linewidth}\centering\begin{figure}
+				\centering
+				\includegraphics[width=1\linewidth]{22.png}	
+		\end{figure}\end{minipage}\hfill 
+		\begin{minipage}[c]{0.44\linewidth}\centering\begin{figure}
+				\begin{center}
+					\includegraphics[width=1\linewidth]{23.png}			
+				\end{center}
+				
+		\end{figure}\end{minipage}
+	\end{minipage}	
+\end{frame}
+
+\begin{frame}
+	\begin{figure}
+		\centering
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=0.65\linewidth]{24.png}
+			%\caption*{Modèle 1}
+		\end{minipage}
+		\\
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=0.65\linewidth]{25.png}
+			%\caption*{Modèle 2}
+		\end{minipage}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\begin{figure}
+		\centering
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=0.65\linewidth]{26.png}
+			%\caption*{Modèle 1}
+		\end{minipage}
+		\\
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=0.65\linewidth]{27.png}
+			%\caption*{Modèle 2}
+		\end{minipage}
+	\end{figure}
+\end{frame}
+
 \section{Cross validation et évaluation}
+
+\begin{frame}
+	\frametitle{Cross validation : une partie train et une partie test, entraînement sur les données train}
+	\begin{minipage}[t]{1\linewidth}
+		\centering\hfill\\[-0.5cm]
+		\begin{figure}	
+		\includegraphics[width=0.6\linewidth]{28.png}	
+		\caption*{Test dataset correspondant à 20\% des données}
+		
+		\includegraphics[width=0.6\linewidth]{29.png}		
+				
+				
+		\end{figure}
+	\end{minipage}	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Prédiction sur la partie test et évaluation avec certaines métriques}
+	\begin{minipage}[t]{1\linewidth}
+		\centering\hfill\\[-0.5cm]
+		\begin{figure}	
+			\includegraphics[width=1\linewidth]{30.png}	
+			\caption*{}
+			
+		\end{figure}
+	\end{minipage}	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Dataset test complété avec les prédictions sur la partie test "Forcast\_test" }
+	\begin{minipage}[t]{1\linewidth}
+		\centering\hfill\\[-1cm]
+		\begin{figure}	
+			\includegraphics[scale =0.35]{34.png}	
+		\end{figure}\hfill\\
+	\begin{rmq}
+		
+		Le meilleur modèle sera celui qui minimise les métriques telles que la MAE et la MSE dans notre cas. En réalité, une métrique différente pourrait être choisie selon la demande d'un métier spécialiste sur la consommation d'électricité.
+	\end{rmq}
+	\end{minipage}	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Comparaison des métriques pour l'évaluation des différents modèles}
+	\begin{minipage}[t]{1\linewidth}
+		\centering
+		\begin{minipage}[c]{0.49\linewidth}\centering\begin{figure}
+				\centering
+				\includegraphics[width=1\linewidth]{32.png}	
+		\end{figure}\end{minipage}\hfill 
+		\begin{minipage}[c]{0.49\linewidth}\centering\begin{figure}
+				\begin{center}
+					\includegraphics[width=1\linewidth]{33.png}			
+				\end{center}
+				
+		\end{figure}\end{minipage}
+	\end{minipage}	
+\end{frame}
+
 \section{Prédiction avec le meilleur modèle}
 
+\begin{frame}
+	\frametitle{Prédiction sur la partie test et évaluation avec certaines métriques}
+	\begin{minipage}[t]{1\linewidth}
+		\centering\hfill\\[-0.5cm]
+		\begin{figure}	
+			\includegraphics[width=1\linewidth]{35.png}	
+			\caption*{}
+			
+		\end{figure}
+	\end{minipage}	
+\end{frame}
 
+\begin{frame}
+	\frametitle{Représentation graphique des prédictions avec les intervalles de confiance à 95\%}
+	\begin{minipage}[t]{1.03\linewidth}
+		\centering\hfill\\[-0.5cm]
+		\begin{figure}	
+			\includegraphics[width=1\linewidth]{36.png}	
+			\caption*{}
+			
+		\end{figure}
+	\end{minipage}	
+\end{frame}
 
+\section{Conclusion}
+
+\begin{frame}
+\begin{con}
+	\begin{enumerate}
+		\item La RMSE est relativement importante et l'indicateur MAPE sur les données réelle n'est pas non plus très bon (40\% d'erreur en moyenne).
+		\item Le traitement des températures, la nébulosité ainsi que la pression atmosphérique pourraient être intégrés dans notre modèle.
+		\item Trouver le caractère saisonnier avec une méthode plus précise comme la transformée de Fourier.
+		\item Tester d'autres méthodes pour traiter les données (ex : réseau de neurones RNN)
+	\end{enumerate}
+\end{con}
+		
+\end{frame}
 
 
 \end{document}
