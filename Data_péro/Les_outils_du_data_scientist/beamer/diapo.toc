@@ -1,0 +1,11 @@
+\babel@toc {french}{}\relax 
+\beamer@sectionintoc {1}{Comment obtenir de la Data, où et sous quels formats?}{4}{0}{1}
+\beamer@subsectionintoc {1}{1}{Où trouver la donnée}{4}{0}{1}
+\beamer@subsectionintoc {1}{2}{Les formats usuels}{5}{0}{1}
+\beamer@sectionintoc {2}{Comment traiter la donnée ?}{8}{0}{2}
+\beamer@subsectionintoc {2}{1}{R Vs Python, éditeur de texte et environnement}{8}{0}{2}
+\beamer@subsectionintoc {2}{2}{Certains modules Python incontournables pour le data Scientist}{11}{0}{2}
+\beamer@subsectionintoc {2}{3}{Exemples et manipulations de la donnée}{12}{0}{2}
+\beamer@sectionintoc {3}{Prédictions et modèles de machine learning}{15}{0}{3}
+\beamer@subsectionintoc {3}{1}{Prédictions du prix d'une voiture avec un modèle de Random Forest}{16}{0}{3}
+\beamer@subsectionintoc {3}{2}{Deep learning pour de la classification binaire}{21}{0}{3}
