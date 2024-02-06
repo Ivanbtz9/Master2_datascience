@@ -1,0 +1,22 @@
+2023-10-04 16:47:40,367 - DEBUG - Using selector: EpollSelector
+2023-10-04 16:47:56,013 - INFO - [Serveur] fonction prendre_commande utilisée au temps 15.646403551101685
+2023-10-04 16:47:56,013 - INFO - [Pic] fonction ajouter utilisée au temps 15.646975040435791
+2023-10-04 16:47:56,014 - INFO - [Pic] fonction retirer utilisée au temps 15.647624731063843
+2023-10-04 16:47:57,016 - INFO - [Serveur] fonction prendre_commande utilisée au temps 16.649675130844116
+2023-10-04 16:47:57,017 - INFO - [Pic] fonction ajouter utilisée au temps 16.650341987609863
+2023-10-04 16:47:57,017 - INFO - [Barman] fonction prepare utilisée au temps 16.6510169506073
+2023-10-04 16:47:57,018 - INFO - [Bar] fonction ajouter utilisée au temps 16.651315212249756
+2023-10-04 16:47:57,018 - INFO - [Pic] fonction retirer utilisée au temps 16.651665925979614
+2023-10-04 16:47:58,019 - INFO - [Serveur] fonction prendre_commande utilisée au temps 17.652575969696045
+2023-10-04 16:47:58,019 - INFO - [Pic] fonction ajouter utilisée au temps 17.653025150299072
+2023-10-04 16:47:58,020 - INFO - [Bar] fonction retirer utilisée au temps 17.653549909591675
+2023-10-04 16:47:58,020 - INFO - [Barman] fonction prepare utilisée au temps 17.654075384140015
+2023-10-04 16:47:58,021 - INFO - [Bar] fonction ajouter utilisée au temps 17.654350757598877
+2023-10-04 16:47:58,021 - INFO - [Pic] fonction retirer utilisée au temps 17.654614448547363
+2023-10-04 16:47:59,022 - INFO - [Serveur] fonction servir utilisée au temps 18.655399084091187
+2023-10-04 16:47:59,022 - INFO - [Bar] fonction retirer utilisée au temps 18.65592312812805
+2023-10-04 16:47:59,023 - INFO - [Barman] fonction prepare utilisée au temps 18.65669274330139
+2023-10-04 16:47:59,024 - INFO - [Bar] fonction ajouter utilisée au temps 18.657140970230103
+2023-10-04 16:48:00,024 - INFO - [Serveur] fonction servir utilisée au temps 19.658026456832886
+2023-10-04 16:48:00,025 - INFO - [Bar] fonction retirer utilisée au temps 19.658384561538696
+2023-10-04 16:48:01,027 - INFO - [Serveur] fonction servir utilisée au temps 20.660499572753906

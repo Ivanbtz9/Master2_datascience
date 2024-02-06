@@ -1,0 +1,22 @@
+2023-10-04 21:06:48,385 - DEBUG - Using selector: EpollSelector
+2023-10-04 21:06:53,204 - INFO - [Serveur] fonction prendre_commande utilisée au temps 4.819440841674805
+2023-10-04 21:06:53,205 - INFO - [Pic] fonction ajouter utilisée au temps 4.820231676101685
+2023-10-04 21:06:53,205 - INFO - [Serveur] fonction prendre_commande utilisée au temps 4.820664644241333
+2023-10-04 21:06:53,206 - INFO - [Pic] fonction retirer utilisée au temps 4.820950984954834
+2023-10-04 21:06:53,206 - INFO - [Pic] fonction ajouter utilisée au temps 4.821367502212524
+2023-10-04 21:06:53,206 - INFO - [Serveur] fonction prendre_commande utilisée au temps 4.821625471115112
+2023-10-04 21:06:53,206 - INFO - [Barman] fonction prepare utilisée au temps 4.821857452392578
+2023-10-04 21:06:53,207 - INFO - [Bar] fonction ajouter utilisée au temps 4.822071313858032
+2023-10-04 21:06:53,207 - INFO - [Pic] fonction retirer utilisée au temps 4.822364807128906
+2023-10-04 21:06:53,207 - INFO - [Pic] fonction ajouter utilisée au temps 4.822773218154907
+2023-10-04 21:06:53,208 - INFO - [Bar] fonction retirer utilisée au temps 4.823057413101196
+2023-10-04 21:06:53,208 - INFO - [Serveur] fonction servir utilisée au temps 4.823349237442017
+2023-10-04 21:06:53,208 - INFO - [Barman] fonction prepare utilisée au temps 4.823549747467041
+2023-10-04 21:06:53,208 - INFO - [Bar] fonction ajouter utilisée au temps 4.823835372924805
+2023-10-04 21:06:53,209 - INFO - [Pic] fonction retirer utilisée au temps 4.8241355419158936
+2023-10-04 21:06:53,209 - INFO - [Bar] fonction retirer utilisée au temps 4.824551343917847
+2023-10-04 21:06:53,209 - INFO - [Serveur] fonction servir utilisée au temps 4.824894189834595
+2023-10-04 21:06:53,210 - INFO - [Barman] fonction prepare utilisée au temps 4.825180292129517
+2023-10-04 21:06:53,210 - INFO - [Bar] fonction ajouter utilisée au temps 4.825549602508545
+2023-10-04 21:06:53,211 - INFO - [Bar] fonction retirer utilisée au temps 4.82604193687439
+2023-10-04 21:06:53,211 - INFO - [Serveur] fonction servir utilisée au temps 4.8264923095703125

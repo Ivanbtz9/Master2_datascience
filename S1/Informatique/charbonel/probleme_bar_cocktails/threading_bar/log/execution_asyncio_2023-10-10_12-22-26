@@ -1,0 +1,47 @@
+2023-10-10 12:22:26,036 - DEBUG - Using selector: EpollSelector
+2023-10-10 12:22:26,036 - DEBUG - Using selector: EpollSelector
+2023-10-10 12:22:26,036 - INFO - [Serveur] fonction prendre_commande utilisée au temps 0.0009224414825439453
+2023-10-10 12:22:26,037 - ERROR - _GatheringFuture exception was never retrieved
+future: <_GatheringFuture finished exception=CancelledError()>
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 605, in sleep
+    return await future
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+asyncio.exceptions.CancelledError
+2023-10-10 12:22:26,037 - DEBUG - Using selector: EpollSelector
+2023-10-10 12:22:26,037 - DEBUG - Using selector: EpollSelector
+2023-10-10 12:23:04,549 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-6' coro=<Barman.run_barman() done, defined at /home/ibotcazou/Bureau/Master_data_science/Master2_datascience/Informatique_charbonel/probleme_bar_cocktails/threading_bar/bar_threading.py:225> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "/home/ibotcazou/Bureau/Master_data_science/Master2_datascience/Informatique_charbonel/probleme_bar_cocktails/threading_bar/./cocktail_threading.py", line 35, in <module>
+    asyncio.run(barman.run_barman())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 47, in run
+    _cancel_all_tasks(loop)
+  File "/usr/lib/python3.10/asyncio/runners.py", line 63, in _cancel_all_tasks
+    loop.run_until_complete(tasks.gather(*to_cancel, return_exceptions=True))
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/ibotcazou/Bureau/Master_data_science/Master2_datascience/Informatique_charbonel/probleme_bar_cocktails/threading_bar/bar_threading.py", line 228, in run_barman
+    await asyncio.gather(self.encaisser(), self.preparer())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/ibotcazou/Bureau/Master_data_science/Master2_datascience/Informatique_charbonel/probleme_bar_cocktails/threading_bar/bar_threading.py", line 215, in encaisser
+    if len(self.bar.encaisser)>=1:
+KeyboardInterrupt

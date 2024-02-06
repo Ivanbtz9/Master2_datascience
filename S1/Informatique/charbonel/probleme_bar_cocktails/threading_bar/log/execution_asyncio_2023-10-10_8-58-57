@@ -1,0 +1,24 @@
+2023-10-10 08:58:57,836 - DEBUG - Using selector: EpollSelector
+2023-10-10 08:58:57,836 - INFO - [Serveur] fonction prendre_commande utilisée au temps 0.0007829666137695312
+2023-10-10 09:01:46,208 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-5' coro=<Barman.preparer() done, defined at /home/ibotcazou/Bureau/Master_data_science/Master2_datascience/Informatique_charbonel/probleme_bar_cocktails/threading_bar/bar_threading.py:180> exception=SystemExit()>
+Traceback (most recent call last):
+  File "/home/ibotcazou/Bureau/Master_data_science/Master2_datascience/Informatique_charbonel/probleme_bar_cocktails/threading_bar/bar_threading.py", line 188, in preparer
+    time.sleep(self.pic.tc)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ibotcazou/Bureau/Master_data_science/Master2_datascience/Informatique_charbonel/probleme_bar_cocktails/threading_bar/./cocktail_threading.py", line 38, in <module>
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/ibotcazou/Bureau/Master_data_science/Master2_datascience/Informatique_charbonel/probleme_bar_cocktails/threading_bar/bar_threading.py", line 209, in preparer
+    sys.exit()
+SystemExit

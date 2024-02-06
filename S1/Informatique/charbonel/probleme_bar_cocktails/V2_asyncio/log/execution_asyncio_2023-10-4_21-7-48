@@ -1,0 +1,22 @@
+2023-10-04 21:07:48,977 - DEBUG - Using selector: EpollSelector
+2023-10-04 21:07:53,272 - INFO - [Serveur] fonction prendre_commande utilisée au temps 4.295029401779175
+2023-10-04 21:07:53,273 - INFO - [Pic] fonction ajouter utilisée au temps 4.295658111572266
+2023-10-04 21:07:53,273 - INFO - [Serveur] fonction prendre_commande utilisée au temps 4.296065807342529
+2023-10-04 21:07:53,274 - INFO - [Pic] fonction retirer utilisée au temps 4.296444416046143
+2023-10-04 21:07:53,274 - INFO - [Pic] fonction ajouter utilisée au temps 4.296894788742065
+2023-10-04 21:07:53,274 - INFO - [Serveur] fonction prendre_commande utilisée au temps 4.297191143035889
+2023-10-04 21:07:53,275 - INFO - [Barman] fonction prepare utilisée au temps 4.297492504119873
+2023-10-04 21:07:53,275 - INFO - [Bar] fonction ajouter utilisée au temps 4.297749042510986
+2023-10-04 21:07:53,275 - INFO - [Pic] fonction retirer utilisée au temps 4.2980146408081055
+2023-10-04 21:07:53,275 - INFO - [Pic] fonction ajouter utilisée au temps 4.298367500305176
+2023-10-04 21:07:53,276 - INFO - [Bar] fonction retirer utilisée au temps 4.298651456832886
+2023-10-04 21:07:53,276 - INFO - [Serveur] fonction servir utilisée au temps 4.29889988899231
+2023-10-04 21:07:53,276 - INFO - [Barman] fonction prepare utilisée au temps 4.2991063594818115
+2023-10-04 21:07:53,276 - INFO - [Bar] fonction ajouter utilisée au temps 4.299297094345093
+2023-10-04 21:07:53,277 - INFO - [Pic] fonction retirer utilisée au temps 4.299509286880493
+2023-10-04 21:07:53,277 - INFO - [Bar] fonction retirer utilisée au temps 4.2999749183654785
+2023-10-04 21:07:53,277 - INFO - [Serveur] fonction servir utilisée au temps 4.300326108932495
+2023-10-04 21:07:53,278 - INFO - [Barman] fonction prepare utilisée au temps 4.300645112991333
+2023-10-04 21:07:53,278 - INFO - [Bar] fonction ajouter utilisée au temps 4.301072835922241
+2023-10-04 21:07:53,279 - INFO - [Bar] fonction retirer utilisée au temps 4.301572322845459
+2023-10-04 21:07:53,279 - INFO - [Serveur] fonction servir utilisée au temps 4.302025318145752

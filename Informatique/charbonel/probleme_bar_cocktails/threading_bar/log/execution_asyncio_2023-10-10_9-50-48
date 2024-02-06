@@ -1,6 +1,0 @@
-2023-10-10 09:50:48,663 - DEBUG - Using selector: EpollSelector
-2023-10-10 09:50:48,663 - DEBUG - Using selector: EpollSelector
-2023-10-10 09:50:48,664 - INFO - [Serveur] fonction prendre_commande utilisée au temps 0.0012619495391845703
-2023-10-10 09:50:49,665 - INFO - [Pic] fonction ajouter utilisée au temps 1.0027713775634766
-2023-10-10 09:50:49,666 - INFO - [Serveur] fonction prendre_commande utilisée au temps 1.0035269260406494
-2023-10-10 09:50:50,671 - INFO - [Pic] fonction retirer utilisée au temps 2.0087428092956543

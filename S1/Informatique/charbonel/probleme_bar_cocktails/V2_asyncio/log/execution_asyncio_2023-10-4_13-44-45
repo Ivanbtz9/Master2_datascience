@@ -1,0 +1,13 @@
+2023-10-04 13:44:45,560 - DEBUG - Using selector: EpollSelector
+2023-10-04 13:45:02,882 - INFO - [Serveur] fonction prendre_commande utilisée au temps 17.322048664093018
+2023-10-04 13:45:02,883 - INFO - [Pic] fonction ajouter utilisée au temps 17.322672128677368
+2023-10-04 13:45:02,883 - INFO - [Pic] fonction retirer utilisée au temps 17.323424100875854
+2023-10-04 13:45:03,886 - INFO - [Barman] fonction prepare utilisée au temps 18.32620072364807
+2023-10-04 13:45:03,887 - INFO - [Bar] fonction ajouter utilisée au temps 18.326725244522095
+2023-10-04 13:45:03,887 - INFO - [Bar] fonction retirer utilisée au temps 18.32742404937744
+2023-10-04 13:45:04,889 - INFO - [Serveur] fonction servir utilisée au temps 19.32955288887024
+2023-10-04 13:45:06,887 - INFO - [Serveur] fonction prendre_commande utilisée au temps 21.326703786849976
+2023-10-04 13:45:06,887 - INFO - [Pic] fonction ajouter utilisée au temps 21.327220916748047
+2023-10-04 13:45:07,889 - INFO - [Pic] fonction retirer utilisée au temps 22.329335689544678
+2023-10-04 13:45:08,892 - INFO - [Barman] fonction prepare utilisée au temps 23.331629514694214
+2023-10-04 13:45:08,892 - INFO - [Bar] fonction ajouter utilisée au temps 23.332199096679688

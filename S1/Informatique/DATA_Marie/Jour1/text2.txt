@@ -1,0 +1,22 @@
+what should I use ?
+
+This question depends on context -- for example : if your work has a workflow which favors one action specifically, set the defaults to that action ; if you are used to a specific sequence of actions, set the defaults to your usage.
+
+Instead of answering your question, I will describe how I work :
+
+I personally don't like using git pull, because you get in one go "get the changes you don't know of from the central repo, and merge them with your work", without a chance to review the changes between the two steps.
+
+I generally run :
+
+    git fetch
+    git log --graph --oneline origin/master my/branch (e.g : inspect the state of the remote branch I'm interested in)
+    run either git rebase origin/master or git merge origin/master (we happen to have a workflow which favors rebase, but anyways : I already have an idea of how complicated that action is going to be)
+
+the difference with git pull is that at step 3, I can do :
+
+    merge or rebase an intermediate commit of the remote branch , or an intermediate commit of my own branch,
+    cherry-pick a specific commit to see what mess it would introduce,
+    edit my branch before rebasing/merging (one common case: drop that commit which does almost the same thing as the bugfix added on master)
+    ...
+
+I have also set an alias for pull --ff-only, since that one is "harmless" (e.g: you know git will not mess up your code if you run it, it will either do the trivial thing or stop and say "this is not a fast-forward"), and use it to update branches which are not mine.

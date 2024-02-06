@@ -1,0 +1,5 @@
+\babel@toc {french}{}\relax 
+\beamer@sectionintoc {1}{La base de données MNIST}{4}{0}{1}
+\beamer@sectionintoc {2}{Classification de cancers}{6}{0}{2}
+\beamer@sectionintoc {3}{Algorithmes de Boosting avec des arbres}{8}{0}{3}
+\beamer@sectionintoc {4}{Data challenge}{11}{0}{4}

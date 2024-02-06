@@ -1,0 +1,13 @@
+null	"La page 11 a un PageRank de : 0.016666666666666666"
+null	"La page 6 a un PageRank de : 0.01902777777777778"
+null	"La page 12 a un PageRank de : 0.035675288744406654"
+null	"La page 7 a un PageRank de : 0.041050446535372"
+null	"La page 9 a un PageRank de : 0.041050446535372"
+null	"La page 2 a un PageRank de : 0.05106661052036747"
+null	"La page 10 a un PageRank de : 0.05330303842191271"
+null	"La page 1 a un PageRank de : 0.06242525170552944"
+null	"La page 4 a un PageRank de : 0.06628930243047011"
+null	"La page 8 a un PageRank de : 0.0671448579317814"
+null	"La page 5 a un PageRank de : 0.07077701738162853"
+null	"La page 0 a un PageRank de : 0.08840983904044092"
+Temps d'exécutiondu programme :  0.9507241249084473

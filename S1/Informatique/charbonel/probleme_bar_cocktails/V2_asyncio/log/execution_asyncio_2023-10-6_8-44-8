@@ -1,0 +1,71 @@
+2023-10-06 08:44:08,676 - DEBUG - Using selector: EpollSelector
+2023-10-06 08:44:20,431 - INFO - [Serveur] fonction prendre_commande utilisée au temps 11.755602598190308
+2023-10-06 08:44:22,435 - INFO - [Pic] fonction ajouter utilisée au temps 13.758971452713013
+2023-10-06 08:44:22,435 - INFO - [Serveur] fonction prendre_commande utilisée au temps 13.759669303894043
+2023-10-06 08:44:22,436 - INFO - [Pic] fonction retirer utilisée au temps 13.760256290435791
+2023-10-06 08:44:23,437 - INFO - [Barman] fonction prepare utilisée au temps 14.761601686477661
+2023-10-06 08:44:23,438 - INFO - [Bar] fonction ajouter utilisée au temps 14.762015581130981
+2023-10-06 08:44:24,438 - INFO - [Pic] fonction ajouter utilisée au temps 15.761953830718994
+2023-10-06 08:44:24,438 - INFO - [Serveur] fonction prendre_commande utilisée au temps 15.762397527694702
+2023-10-06 08:44:25,440 - INFO - [Pic] fonction retirer utilisée au temps 16.764261960983276
+2023-10-06 08:44:26,436 - INFO - [Bar] fonction retirer utilisée au temps 17.759987831115723
+2023-10-06 08:44:26,436 - INFO - [Serveur] fonction servir utilisée au temps 17.76017713546753
+2023-10-06 08:44:26,439 - INFO - [Pic] fonction ajouter utilisée au temps 17.763553619384766
+2023-10-06 08:44:26,439 - INFO - [Serveur] fonction prendre_commande utilisée au temps 17.763769149780273
+2023-10-06 08:44:26,441 - INFO - [Barman] fonction prepare utilisée au temps 17.76518487930298
+2023-10-06 08:44:26,441 - INFO - [Bar] fonction ajouter utilisée au temps 17.76543426513672
+2023-10-06 08:44:26,441 - INFO - [Pic] fonction retirer utilisée au temps 17.76563310623169
+2023-10-06 08:44:27,443 - INFO - [Barman] fonction prepare utilisée au temps 18.767399311065674
+2023-10-06 08:44:27,443 - INFO - [Bar] fonction ajouter utilisée au temps 18.767784118652344
+2023-10-06 08:44:28,441 - INFO - [Pic] fonction ajouter utilisée au temps 19.76573872566223
+2023-10-06 08:44:29,437 - INFO - [Bar] fonction retirer utilisée au temps 20.761606216430664
+2023-10-06 08:44:29,438 - INFO - [Serveur] fonction servir utilisée au temps 20.762006282806396
+2023-10-06 08:44:29,444 - INFO - [Pic] fonction retirer utilisée au temps 20.768561124801636
+2023-10-06 08:44:30,446 - INFO - [Barman] fonction prepare utilisée au temps 21.770501375198364
+2023-10-06 08:44:30,447 - INFO - [Bar] fonction ajouter utilisée au temps 21.77092742919922
+2023-10-06 08:44:32,440 - INFO - [Bar] fonction retirer utilisée au temps 23.76486849784851
+2023-10-06 08:44:32,441 - INFO - [Serveur] fonction servir utilisée au temps 23.765472650527954
+2023-10-06 08:44:35,442 - INFO - [Bar] fonction retirer utilisée au temps 26.76682686805725
+2023-10-06 08:44:35,443 - INFO - [Serveur] fonction servir utilisée au temps 26.76737904548645
+2023-10-06 08:45:16,364 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<Serveur.servir() done, defined at /home/ibotcazou/Bureau/Master_data_science/Master2_datascience/Informatique_charbonel/probleme_bar_cocktails/V2_asyncio/bar_asyncio.py:134> exception=SystemExit()>
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1871, in _run_once
+    event_list = self._selector.select(timeout)
+  File "/usr/lib/python3.10/selectors.py", line 469, in select
+    fd_event_list = self._selector.poll(timeout, max_ev)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ibotcazou/Bureau/Master_data_science/Master2_datascience/Informatique_charbonel/probleme_bar_cocktails/V2_asyncio/bar_asyncio.py", line 140, in servir
+    await asyncio.sleep(self.bar.tp + self.pic.tc ) # Attendre un peu la commande va arriver sur le bar
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 605, in sleep
+    return await future
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/runners.py", line 47, in run
+    _cancel_all_tasks(loop)
+  File "/usr/lib/python3.10/asyncio/runners.py", line 63, in _cancel_all_tasks
+    loop.run_until_complete(tasks.gather(*to_cancel, return_exceptions=True))
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/ibotcazou/Bureau/Master_data_science/Master2_datascience/Informatique_charbonel/probleme_bar_cocktails/V2_asyncio/bar_asyncio.py", line 151, in servir
+    sys.exit()
+SystemExit

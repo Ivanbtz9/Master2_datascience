@@ -1,8 +1,0 @@
-\babel@toc {french}{}\relax 
-\beamer@sectionintoc {1}{Partie preprocessing}{4}{0}{1}
-\beamer@sectionintoc {2}{Stationnarité et vérification}{6}{0}{2}
-\beamer@sectionintoc {3}{Étude des corrélations}{8}{0}{3}
-\beamer@sectionintoc {4}{Recherche de modèles significatifs}{9}{0}{4}
-\beamer@sectionintoc {5}{Cross validation et évaluation}{16}{0}{5}
-\beamer@sectionintoc {6}{Prédiction avec le meilleur modèle}{20}{0}{6}
-\beamer@sectionintoc {7}{Conclusion}{22}{0}{7}

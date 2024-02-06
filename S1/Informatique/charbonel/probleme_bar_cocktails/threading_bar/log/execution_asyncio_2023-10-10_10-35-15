@@ -1,0 +1,10 @@
+2023-10-10 10:35:15,522 - DEBUG - Using selector: EpollSelector
+2023-10-10 10:35:15,523 - DEBUG - Using selector: EpollSelector
+2023-10-10 10:35:15,523 - INFO - [Serveur] fonction prendre_commande utilisée au temps 0.001066446304321289
+2023-10-10 10:35:16,529 - INFO - [Pic] fonction ajouter utilisée au temps 1.0073723793029785
+2023-10-10 10:35:16,545 - INFO - [Serveur] fonction prendre_commande utilisée au temps 1.0227282047271729
+2023-10-10 10:35:17,556 - INFO - [Pic] fonction ajouter utilisée au temps 2.033803701400757
+2023-10-10 10:35:17,571 - INFO - [Serveur] fonction prendre_commande utilisée au temps 2.049156904220581
+2023-10-10 10:35:18,578 - INFO - [Pic] fonction ajouter utilisée au temps 3.0556254386901855
+2023-10-10 10:35:18,583 - INFO - [Serveur] fonction prendre_commande utilisée au temps 3.0608251094818115
+2023-10-10 10:35:19,589 - INFO - [Pic] fonction ajouter utilisée au temps 4.0670716762542725

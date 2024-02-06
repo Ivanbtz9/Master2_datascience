@@ -1,0 +1,30 @@
+2023-10-10 09:32:59,775 - DEBUG - Using selector: EpollSelector
+2023-10-10 09:32:59,775 - DEBUG - Using selector: EpollSelector
+2023-10-10 09:32:59,775 - INFO - [Serveur] fonction prendre_commande utilisée au temps 0.0012900829315185547
+2023-10-10 09:33:00,777 - INFO - [Pic] fonction ajouter utilisée au temps 1.0030431747436523
+2023-10-10 09:33:00,778 - INFO - [Serveur] fonction prendre_commande utilisée au temps 1.0036497116088867
+2023-10-10 09:33:01,778 - INFO - [Pic] fonction retirer utilisée au temps 2.004120349884033
+2023-10-10 09:33:02,781 - INFO - [Barman] fonction prepare utilisée au temps 3.0066354274749756
+2023-10-10 09:33:02,781 - INFO - [Bar] fonction ajouter utilisée au temps 3.0068020820617676
+2023-10-10 09:33:02,781 - INFO - [Bar] fonction retirer utilisée au temps 3.0068743228912354
+2023-10-10 09:33:02,781 - INFO - [Serveur] fonction servir utilisée au temps 3.00705885887146
+2023-10-10 09:33:02,781 - INFO - [Pic] fonction ajouter utilisée au temps 3.007199764251709
+2023-10-10 09:33:02,781 - INFO - [Serveur] fonction prendre_commande utilisée au temps 3.007272958755493
+2023-10-10 09:33:03,782 - INFO - [Pic] fonction retirer utilisée au temps 4.008283376693726
+2023-10-10 09:33:04,785 - INFO - [Barman] fonction prepare utilisée au temps 5.0109703540802
+2023-10-10 09:33:04,785 - INFO - [Bar] fonction ajouter utilisée au temps 5.011164665222168
+2023-10-10 09:33:04,785 - INFO - [Bar] fonction retirer utilisée au temps 5.01127552986145
+2023-10-10 09:33:04,785 - INFO - [Serveur] fonction servir utilisée au temps 5.011353492736816
+2023-10-10 09:33:04,785 - INFO - [Pic] fonction ajouter utilisée au temps 5.0114428997039795
+2023-10-10 09:33:04,786 - INFO - [Serveur] fonction prendre_commande utilisée au temps 5.011501789093018
+2023-10-10 09:33:05,787 - INFO - [Pic] fonction retirer utilisée au temps 6.012575387954712
+2023-10-10 09:33:06,789 - INFO - [Barman] fonction prepare utilisée au temps 7.015122652053833
+2023-10-10 09:33:06,790 - INFO - [Bar] fonction ajouter utilisée au temps 7.015482425689697
+2023-10-10 09:33:06,790 - INFO - [Bar] fonction retirer utilisée au temps 7.015635251998901
+2023-10-10 09:33:06,790 - INFO - [Serveur] fonction servir utilisée au temps 7.0158586502075195
+2023-10-10 09:33:06,790 - INFO - [Pic] fonction ajouter utilisée au temps 7.015973091125488
+2023-10-10 09:33:07,791 - INFO - [Pic] fonction retirer utilisée au temps 8.017143964767456
+2023-10-10 09:33:08,794 - INFO - [Barman] fonction prepare utilisée au temps 9.020066738128662
+2023-10-10 09:33:08,794 - INFO - [Bar] fonction ajouter utilisée au temps 9.020246505737305
+2023-10-10 09:33:08,794 - INFO - [Bar] fonction retirer utilisée au temps 9.020324230194092
+2023-10-10 09:33:08,795 - INFO - [Serveur] fonction servir utilisée au temps 9.020496845245361
