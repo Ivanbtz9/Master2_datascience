@@ -1,0 +1,38 @@
+2024-02-08 16:22:00,450 - DEBUG - Using selector: EpollSelector
+2024-02-08 16:22:13,612 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<main() done, defined at /home/ibotcazou/Bureau/Master_data_science/Master2_datascience/S1/Informatique/charbonel/probleme_bar_cocktails/V2_asyncio/./cocktail_asyncio.py:9> exception=SystemExit()>
+Traceback (most recent call last):
+  File "/home/ibotcazou/Bureau/Master_data_science/Master2_datascience/S1/Informatique/charbonel/probleme_bar_cocktails/V2_asyncio/bar_asyncio.py", line 142, in servir
+    sys.exit()
+SystemExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/runners.py", line 47, in run
+    _cancel_all_tasks(loop)
+  File "/usr/lib/python3.10/asyncio/runners.py", line 63, in _cancel_all_tasks
+    loop.run_until_complete(tasks.gather(*to_cancel, return_exceptions=True))
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/ibotcazou/Bureau/Master_data_science/Master2_datascience/S1/Informatique/charbonel/probleme_bar_cocktails/V2_asyncio/./cocktail_asyncio.py", line 35, in main
+    await asyncio.gather(*tasks3) #gère la concurrence
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/ibotcazou/Bureau/Master_data_science/Master2_datascience/S1/Informatique/charbonel/probleme_bar_cocktails/V2_asyncio/bar_asyncio.py", line 158, in servir
+    sys.exit()
+SystemExit
