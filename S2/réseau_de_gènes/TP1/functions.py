@@ -7,7 +7,7 @@ def replace_random_value(df):
     """permet de remplacer les valeur nulle
     par une valeur aléatoire de la colonne"""
     for col in df.columns:
-        values_col = df[col].dropna().values
+        values_col = df[col].dropna().values #récupère les valeurs non nulles
         if df[col].isnull().sum() > 0: #vérifie si il ya un Nan dans la colonne
             # met une valeur aléatoire si elle est nulle 
             df[col] = df[col].apply(lambda x: np.random.choice(values_col) if pd.isnull(x) else x)
@@ -40,7 +40,7 @@ def scatter_plot_cause_effet(data,target,display=True):
 def find_cycle(target,data):
     """Affiche en fonction de la matrice d'adjacence d'un graphe
     si il y a des cycles dans le graphe en comparant avec les valeurs
-    propres de la matrice"""
+    propres de la matrice d'adjacence"""
 
     unique_values = pd.unique(target.values.ravel('K'))
     #Le paramètre 'K' dans la méthode .ravel() spécifie que l'aplatissement 
