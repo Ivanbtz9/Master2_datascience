@@ -20,11 +20,11 @@ def normalisation_df(df):
 def scatter_plot_cause_effet(data,target,display=True):
     """Permet d'afficher les relations entre deux variables
     causes/effet dans un repère 2D"""
-    for index, row in target.iterrows(): # permet d'ittérer sur les lignes et index (data.iterrows())
+    for _, row in target.iterrows(): # permet d'ittérer sur les lignes et index (data.iterrows())
         source_var = row.iloc[0]
         target_var = row.iloc[1]
 
-        # Sélection des données pour les variables source et cible
+        # Sélection des données pour les variables source et cible par le nom de la colonne 
         x = data[source_var]
         y = data[target_var]
         
@@ -41,27 +41,17 @@ def find_cycle(target,data):
     """Affiche en fonction de la matrice d'adjacence d'un graphe
     si il y a des cycles dans le graphe en comparant avec les valeurs
     propres de la matrice d'adjacence"""
-
-    unique_values = pd.unique(target.values.ravel('K'))
-    #Le paramètre 'K' dans la méthode .ravel() spécifie que l'aplatissement 
-    #doit être fait en suivant l'ordre de stockage en mémoire
-
-    mapping = {value: i for i, value in enumerate(unique_values)}
-    for col in target.columns:
-        target[col] = target[col].map(mapping)
         
-    N = len(data.columns)
-    ajacent_matrix = np.zeros((N,N))
-    for index,row in target.iterrows():
-        try:
-            i = row.iloc[0]
-            j = row.iloc[1]
-            ajacent_matrix[i,j]=1
-        except:
-            print(row.iloc[0][1:],row.iloc[1][1:])
-            
+    n = len(data.columns)
+
+    causal_matrix = pd.DataFrame(np.zeros((n,n)),index=data.columns,columns=data.columns)
+
+    for c1,c2 in zip(target.iloc[:,0].values,target.iloc[:,1].values):
+        causal_matrix.loc[c1][c2] = 1
+    
     # Calculer les valeurs propres de la matrice d'adjacence avec leur multiplicité
-    eigenvals = np.linalg.eigvals(ajacent_matrix)
+    eigenvals = np.linalg.eigvals(np.array(causal_matrix))
+    
     # Vérifier si l'une des valeurs propres est nulle (ou très proche de zéro) et renvoie un Booleen 
     all_eigen_values_null = np.isclose(eigenvals, 0).all()
     
@@ -70,4 +60,6 @@ def find_cycle(target,data):
     else:
         print("Il y a au moins un cycle dans le graphe")
         
-    return eigenvals,all_eigen_values_null
+    return causal_matrix,eigenvals,all_eigen_values_null
+
+
